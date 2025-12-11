@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
 
-namespace Inspired.CoreUI;
+namespace FluentLogger;
 
 public static class FluentLoggerExtensions
 {

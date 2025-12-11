@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Inspired.CoreUI;
+namespace FluentLogger;
 
 public static class CallerLogContextExtensions
 {

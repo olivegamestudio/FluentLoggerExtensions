@@ -2,32 +2,67 @@ using Microsoft.Extensions.Logging;
 
 namespace FluentLogger;
 
+/// <summary>
+/// Contains extension methods for logging with caller context.
+/// </summary>
 public static class CallerLogContextExtensions
 {
+    /// <summary>
+    /// Logs an information message including caller context (file name, member name, line number).
+    /// </summary>
+    /// <param name="context">The caller log context.</param>
+    /// <param name="message">The message to log.</param>
+    /// <param name="args">The arguments for the message.</param>
     public static void LogInformation(this CallerLogContext context, string message, params object?[] args)
     {
-        string fileName = Path.GetFileName(context.File);
+        string? fileName = Path.GetFileName(context.File);
         context.Logger.LogInformation("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
     }
 
+    /// <summary>
+    /// Logs an error message including caller context (file name, member name, line number).
+    /// </summary>
+    /// <param name="context">The caller log context.</param>
+    /// <param name="message">The message to log.</param>
+    /// <param name="args">The arguments for the message.</param>
     public static void LogError(this CallerLogContext context, string message, params object?[] args)
     {
-        string fileName = Path.GetFileName(context.File);
+        string? fileName = Path.GetFileName(context.File);
         context.Logger.LogError("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
     }
 
+    /// <summary>
+    /// Logs an debug message including caller context (file name, member name, line number).
+    /// </summary>
+    /// <param name="context">The caller log context.</param>
+    /// <param name="message">The message to log.</param>
+    /// <param name="args">The arguments for the message.</param>
     public static void LogDebug(this CallerLogContext context, string message, params object?[] args)
     {
-        string fileName = Path.GetFileName(context.File);
+        string? fileName = Path.GetFileName(context.File);
         context.Logger.LogDebug("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
     }
 
-    public static void LogWarning(this CallerLogContext ctx, string message, params object?[] args)
+    /// <summary>
+    /// Logs an warning message including caller context (file name, member name, line number).
+    /// </summary>
+    /// <param name="context">The caller log context.</param>
+    /// <param name="message">The message to log.</param>
+    /// <param name="args">The arguments for the message.</param>
+    public static void LogWarning(this CallerLogContext context, string message, params object?[] args)
     {
-        string fileName = Path.GetFileName(ctx.File);
-        ctx.Logger.LogWarning("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, ctx.Member, ctx.Line, args));
+        string? fileName = Path.GetFileName(context.File);
+        context.Logger.LogWarning("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
     }
 
+    /// <summary>
+    /// Prepends caller information to the arguments array.
+    /// </summary>
+    /// <param name="file">The file name of the caller.</param>
+    /// <param name="member">The member name of the caller.</param>
+    /// <param name="line">The line number of the caller.</param>
+    /// <param name="args">The original arguments array.</param>
+    /// <returns>A new arguments array with caller information prepended.</returns>
     static object?[] PrependCallerArgs(string file, string? member, int line, object?[] args)
     {
         object?[] finalArgs = new object?[args.Length + 3];

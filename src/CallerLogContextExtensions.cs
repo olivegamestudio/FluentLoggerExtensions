@@ -15,8 +15,22 @@ public static class CallerLogContextExtensions
     /// <param name="args">The arguments for the message.</param>
     public static void LogInformation(this CallerLogContext context, string message, params object?[] args)
     {
-        string? fileName = Path.GetFileName(context.File);
-        context.Logger.LogInformation("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
+        string fileName = Path.GetFileName(context.File);
+
+        try
+        {
+            context.Logger.LogInformation(
+                "[{File}:{Member}:{Line}] " + message,
+                PrependCallerArgs(fileName, context.Member, context.Line, args));
+        }
+        catch (Exception ex)
+        {
+            // Fall back to a safe message; don't rethrow
+            context.Logger.LogError(
+                ex,
+                "[{File}:{Member}:{Line}] Logging failed for template. Template={Template}",
+                fileName, context.Member, context.Line, message);
+        }
     }
 
     /// <summary>
@@ -27,8 +41,22 @@ public static class CallerLogContextExtensions
     /// <param name="args">The arguments for the message.</param>
     public static void LogError(this CallerLogContext context, string message, params object?[] args)
     {
-        string? fileName = Path.GetFileName(context.File);
-        context.Logger.LogError("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
+        string fileName = Path.GetFileName(context.File);
+
+        try
+        {
+            context.Logger.LogError(
+                "[{File}:{Member}:{Line}] " + message,
+                PrependCallerArgs(fileName, context.Member, context.Line, args));
+        }
+        catch (Exception ex)
+        {
+            // Fall back to a safe message; don't rethrow
+            context.Logger.LogError(
+                ex,
+                "[{File}:{Member}:{Line}] Logging failed for template. Template={Template}",
+                fileName, context.Member, context.Line, message);
+        }
     }
 
     /// <summary>
@@ -39,8 +67,22 @@ public static class CallerLogContextExtensions
     /// <param name="args">The arguments for the message.</param>
     public static void LogDebug(this CallerLogContext context, string message, params object?[] args)
     {
-        string? fileName = Path.GetFileName(context.File);
-        context.Logger.LogDebug("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
+        string fileName = Path.GetFileName(context.File);
+
+        try
+        {
+            context.Logger.LogDebug(
+                "[{File}:{Member}:{Line}] " + message,
+                PrependCallerArgs(fileName, context.Member, context.Line, args));
+        }
+        catch (Exception ex)
+        {
+            // Fall back to a safe message; don't rethrow
+            context.Logger.LogDebug(
+                ex,
+                "[{File}:{Member}:{Line}] Logging failed for template. Template={Template}",
+                fileName, context.Member, context.Line, message);
+        }
     }
 
     /// <summary>
@@ -51,8 +93,22 @@ public static class CallerLogContextExtensions
     /// <param name="args">The arguments for the message.</param>
     public static void LogWarning(this CallerLogContext context, string message, params object?[] args)
     {
-        string? fileName = Path.GetFileName(context.File);
-        context.Logger.LogWarning("[{File}:{Member}:{Line}] " + message, PrependCallerArgs(fileName, context.Member, context.Line, args));
+        string fileName = Path.GetFileName(context.File);
+
+        try
+        {
+            context.Logger.LogWarning(
+                "[{File}:{Member}:{Line}] " + message,
+                PrependCallerArgs(fileName, context.Member, context.Line, args));
+        }
+        catch (Exception ex)
+        {
+            // Fall back to a safe message; don't rethrow
+            context.Logger.LogWarning(
+                ex,
+                "[{File}:{Member}:{Line}] Logging failed for template. Template={Template}",
+                fileName, context.Member, context.Line, message);
+        }
     }
 
     /// <summary>

@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".github/workflows/dotnet-desktop.yml" />
+    <File Path="README.md" />
   </Folder>
-  <Project Path="FluentLoggerExtensions.csproj" />
+  <Project Path="src/FluentLoggerExtensions.csproj" />
+  <Project Path="tests/FluentLoggerExtensions.Tests/FluentLoggerExtensions.Tests.csproj" Id="2c496e42-1236-4580-a854-98ce3e6cce11" />
 </Solution>

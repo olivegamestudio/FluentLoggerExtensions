@@ -52,6 +52,6 @@ jobs:
       - name: Publish NuGet
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-            dotnet nuget push "artifacts/*.nupkg" --api-key "$NUGET" --source "https://api.nuget.org/v3/index.json" --skip-duplicate --no-symbols
+            dotnet nuget push "**/*.nupkg" --api-key "$NUGET" --source "https://api.nuget.org/v3/index.json" --skip-duplicate --no-symbols
         env:
             NUGET: ${{ secrets.NUGET }}

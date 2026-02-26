@@ -2,6 +2,10 @@
 
 Fluent extensions for `Microsoft.Extensions.Logging` that capture caller file, member, and line information and prepend it to your log messages.
 
+[![NuGet](https://img.shields.io/nuget/v/FluentLoggerExtensions.svg)](https://www.nuget.org/packages/FluentLoggerExtensions)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/FluentLoggerExtensions.svg)](https://www.nuget.org/packages/FluentLoggerExtensions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## Install
 - From NuGet: `dotnet add package FluentLoggerExtensions`
 - Or reference the project directly in your solution.
